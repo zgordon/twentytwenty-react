@@ -1,2 +1,2 @@
-# twentytwenty-react
-A demo WordPress theme showing how to load React
+# TwentyTwenty React
+A Twenty Twenty Child WordPress Theme demonstrating how to load React on the front end of a theme.
