@@ -1,17 +1,23 @@
-const { render, useState } = wp.element;
+const { render } = wp.element;
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "@apollo/react-hooks";
 
-const Votes = () => {
-  const [votes, setVotes] = useState(0);
-  const addVote = () => {
-    setVotes(votes + 1);
-  };
+// import Votes from "./components/votes";
+import Posts from "./components/posts";
+
+const client = new ApolloClient({
+  uri: "http://react-dev.local/graphql"
+});
+
+const App = () => {
   return (
-    <div>
-      <h2>{votes} Votes</h2>
-      <p>
-        <button onClick={addVote}>Vote!</button>
-      </p>
-    </div>
+    <ApolloProvider client={client}>
+      <div>
+        <p>My First Apollo Theme!</p>
+        <Posts />
+        {/* <Votes /> */}
+      </div>
+    </ApolloProvider>
   );
 };
-render(<Votes />, document.getElementById(`react-app`));
+render(<App />, document.getElementById(`react-app`));

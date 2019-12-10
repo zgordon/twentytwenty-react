@@ -21,3 +21,15 @@ function my_theme_enqueue_styles() {
       );
   
 }
+
+// Add Votes to Custom Meta Fields
+add_action( 'graphql_register_types', function() {
+    register_graphql_field( 'Post', 'votes', [
+       'type' => 'Number',
+       'description' => __( 'The number of votes', 'wp-graphql' ),
+       'resolve' => function( $post ) {
+         $votes = get_post_meta( $post->ID, 'votes', true );
+         return ! empty( $votes ) ? $votes : 0;
+       }
+    ] );
+  } );
